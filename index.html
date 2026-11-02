@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ExamSphere</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+header {
+    background: black;
+    color: white;
+    padding: 25px;
+}
+
+h1 {
+    margin: 5px;
+    letter-spacing: 3px;
+}
+
+.container {
+    padding: 30px;
+}
+
+.card {
+    background: white;
+    display: inline-block;
+    width: 220px;
+    padding: 25px;
+    margin: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+button {
+    background: black;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #444;
+}
+
+#registration, #result {
+    display: none;
+    background: white;
+    width: 65%;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+input, select {
+    width: 80%;
+    padding: 12px;
+    margin: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 85%;
+    height: 230px;
+    background: #111;
+    color: white;
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    font-family: Consolas, monospace;
+}
+
+textarea::placeholder {
+    color: #bbb;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>EXAMSPHERE</h1>
+    <p>Adaptive Quiz System</p>
+</header>
+
+<!-- HOME PAGE -->
+
+<div class="container" id="home">
+
+    <h2>Welcome to ExamSphere</h2>
+    <p>Select a module to continue</p>
+
+    <div class="card">
+        <h3>Module 01</h3>
+        <p>Student Registration</p>
+        <button onclick="openModule('Student Registration')">
+            Explore
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Module 02</h3>
+        <p>Adaptive Quiz</p>
+        <button onclick="openModule('Adaptive Quiz')">
+            Explore
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Module 03</h3>
+        <p>Results & Performance</p>
+        <button onclick="openModule('Results & Performance')">
+            Explore
+        </button>
+    </div>
+
+</div>
+
+<!-- REGISTRATION PAGE -->
+
+<div id="registration">
+
+    <h2>Student Registration</h2>
+
+    <p id="moduleName"></p>
+
+    <form onsubmit="submitForm(event)">
+
+        <input type="text" id="studentId"
+        placeholder="Student ID" required>
+
+        <input type="text" id="studentName"
+        placeholder="Student Name" required>
+
+        <select id="branch" required>
+            <option value="">Choose Branch</option>
+            <option>CSE</option>
+            <option>ECE</option>
+            <option>EEE</option>
+            <option>IT</option>
+            <option>AI & DS</option>
+            <option>Mechanical</option>
+            <option>Civil</option>
+        </select>
+
+        <select id="semester" required>
+            <option value="">Choose Semester</option>
+            <option>1st Semester</option>
+            <option>2nd Semester</option>
+            <option>3rd Semester</option>
+            <option>4th Semester</option>
+            <option>5th Semester</option>
+            <option>6th Semester</option>
+            <option>7th Semester</option>
+            <option>8th Semester</option>
+        </select>
+
+        <h3>Project Code Editor</h3>
+
+        <textarea id="code"
+        placeholder="// Enter or paste your project code here..."
+        required></textarea>
+
+        <br><br>
+
+        <button type="submit">Submit Details</button>
+
+    </form>
+
+</div>
+
+<!-- RESULT PAGE -->
+
+<div id="result">
+
+    <h2>Registration Completed!</h2>
+
+    <p id="output"></p>
+
+    <button onclick="backHome()">Home</button>
+
+</div>
+
+<script>
+
+function openModule(name) {
+
+    document.getElementById("home").style.display = "none";
+
+    document.getElementById("registration").style.display = "block";
+
+    document.getElementById("moduleName").innerHTML =
+    "Selected Module: " + name;
+
+}
+
+function submitForm(event) {
+
+    event.preventDefault();
+
+    var id = document.getElementById("studentId").value;
+    var name = document.getElementById("studentName").value;
+    var branch = document.getElementById("branch").value;
+    var semester = document.getElementById("semester").value;
+    var code = document.getElementById("code").value;
+
+    document.getElementById("output").innerHTML =
+    "Student ID: " + id + "<br><br>" +
+    "Student Name: " + name + "<br><br>" +
+    "Branch: " + branch + "<br><br>" +
+    "Semester: " + semester + "<br><br>" +
+    "Selected Module: " +
+    document.getElementById("moduleName").innerHTML +
+    "<br><br>Project Code: Entered Successfully";
+
+    document.getElementById("registration").style.display = "none";
+
+    document.getElementById("result").style.display = "block";
+
+}
+
+function backHome() {
+
+    document.getElementById("result").style.display = "none";
+
+    document.getElementById("home").style.display = "block";
+
+}
+
+</script>
+
+</body>
+</html>
